@@ -19,11 +19,15 @@ var has3d,
 
 	A90 = PI/2,
 
-	isTouch = 'Touch' in window,
+	isTouch = 'ontouchstart' in window,
 
-	events = (isTouch) ? {start: 'touchstart', move: 'touchmove', end: 'touchend'}
-			: {start: 'mousedown', move: 'mousemove', end: 'mouseup'},
-
+	// events = (isTouch) ? {start: 'touchstart', move: 'touchmove', end: 'touchend'}
+	// 		: {start: 'mousedown', move: 'mousemove', end: 'mouseup'},
+	events  = {
+		start:'touchstart mousedown',
+		move:'touchmove mousemove',
+		end:'mouseup'
+	},
 	// Contansts used for each corner
 	// tl * tr
 	// *     *
@@ -1239,8 +1243,8 @@ flipMethods = {
 			return false;
 		}		
 
-		e = (isTouch) ? e.originalEvent.touches : [e];
-
+		//e = (isTouch) ? e.originalEvent.touches : [e];
+		e  = e.originalEvent.touches? e.originalEvent.touches : [e];
 		var data = this.data().f,
 			pos = data.parent.offset(),
 			width = this.width(),
@@ -1786,8 +1790,8 @@ flipMethods = {
 		var data = this.data().f;
 
 		if (!data.disabled) {
-			e = (isTouch) ? e.originalEvent.touches : [e];
-		
+		//	e = (isTouch) ? e.originalEvent.touches : [e];
+			e = e.originalEvent.touches? e.originalEvent.touches:[e];
 			if (data.corner) {
 
 				var pos = data.parent.offset();
