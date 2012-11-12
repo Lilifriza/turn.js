@@ -26,7 +26,7 @@ var has3d,
 	events  = {
 		start:'touchstart mousedown',
 		move:'touchmove mousemove',
-		end:'mouseup'
+		end:'mouseup touchend'
 	},
 	// Contansts used for each corner
 	// tl * tr
